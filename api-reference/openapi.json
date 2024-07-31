@@ -111,7 +111,7 @@
                   }
                 }
               },
-              "required": ["first_name", "last_name", "company", "company_domain", "linkedin_url", "custom_fields"]
+              "required": ["first_name", "last_name", "company"]
             }
           },
           "webhook": {
@@ -124,7 +124,7 @@
             "type": "boolean"
           }
         },
-        "required": ["data", "webhook", "process_flow", "verify_catch_all"]
+        "required": ["data"]
       },
       "Plant": {
         "required": [
