@@ -23,11 +23,11 @@
       "post": {
         "description": "Create a new enrichment",
         "requestBody": {
-          "description": "Plant to add to the store",
+          "description": "Data to enrich",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+                "$ref": "#/components/schemas/NewLeadsEnrichment"
               }
             }
           },
@@ -57,8 +57,44 @@
         }
       }
     },
+    "/another-path": {
+      "get": {
+        "description": "Sample description for another path",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  },
   "components": {
     "schemas": {
+      "NewLeadsEnrichment": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Array of data to enrich",
+            "type": "array"
+          },
+          "webhook": {
+            "description": "Webhook to trigger",
+            "type": "string"
+          },
+          "verify_catch_all": {
+            "description": "Verification for catch all",
+            "type": "boolean"
+          },
+          "enrich_phone_number": {
+            "description": "Enrich phone number",
+            "type": "boolean"
+          },
+          "process_flow": {
+            "description": "Process flow identifier",
+            "type": "string"
+          }
+        }
+      },
       "Plant": {
         "required": [
           "name"
@@ -74,26 +110,6 @@
             "type": "string"
           }
         }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
-          },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
-          }
-        ]
       },
       "Error": {
         "required": [
