@@ -57,6 +57,17 @@
         }
       }
     },
+    "/another-path": {
+      "get": {
+        "description": "Sample description for another path",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    }
+  },
   "components": {
     "schemas": {
       "Plant": {
