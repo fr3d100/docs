@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "http://app.bettercontact.rocks/api/v2"
+      "url": "https://app.bettercontact.rocks/api/v2"
     }
   ],
   "security": [
