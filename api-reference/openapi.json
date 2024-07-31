@@ -93,7 +93,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "description": "Array of data to enrich",
+            "description": "Array of leads to enrich",
             "type": "array",
             "items": {
               "type": "object",
@@ -129,13 +129,16 @@
             }
           },
           "webhook": {
-            "type": "string"
-          },
-          "process_flow": {
+            "description": "You can provide a webhook url where results will be pushed once enrichment is done",
             "type": "string"
           },
           "verify_catch_all": {
+            "description": "If activated, catch_all email address will be verified to avoid using risky emails",
             "type": "boolean"
+          },
+          "process_flow": {
+            "description": "In case you subscribed to the process flow add-on, you can add the process flow ID you wanna use for your enrichment",
+            "type": "string"
           }
         },
         "required": ["data"]
