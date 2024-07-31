@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI Plant Store",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "title": "BetterContact API",
+    "description": "The official BetterContact API to enrich your leads list",
     "license": {
       "name": "MIT"
     },
@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "http://app.bettercontact.rocks"
     }
   ],
   "security": [
@@ -19,55 +19,7 @@
     }
   ],
   "paths": {
-    "/async/:reques_id": {
-      "get": {
-        "description": "Returns the results of a submitted enrichment",
-        "parameters": [
-          {
-            "name": "request_id",
-            "in": "query",
-            "description": "The request id you got in response from your previous call",
-            "schema": {
-              "type": "text"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Not Authorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Request_id not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
+    "/async": {
       "post": {
         "description": "Create a new enrichment",
         "requestBody": {
