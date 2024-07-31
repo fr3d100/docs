@@ -39,7 +39,21 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Plant"
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "id": {
+                      "type": "string",
+                      "example": "your-request-id"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Processing..."
+                    }
+                  }
                 }
               }
             }
@@ -125,22 +139,6 @@
           }
         },
         "required": ["data"]
-      },
-      "Plant": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The name of the plant",
-            "type": "string"
-          },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
       },
       "Error": {
         "required": [
