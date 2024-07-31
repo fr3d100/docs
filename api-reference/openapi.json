@@ -10,12 +10,12 @@
   },
   "servers": [
     {
-      "url": "http://app.bettercontact.rocks"
+      "url": "http://app.bettercontact.rocks/api/v2"
     }
   ],
   "security": [
     {
-      "bearerAuth": []
+      "apiKey": []
     }
   ],
   "paths": {
@@ -54,7 +54,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
       }
     },
     "/another-path": {
@@ -129,9 +134,10 @@
       }
     },
     "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+      "apiKey": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "query"
       }
     }
   }
