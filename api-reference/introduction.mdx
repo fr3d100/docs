@@ -1,33 +1,21 @@
 ---
 title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+description: 'Welcome on BetterContact offical API documentation'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
 
 ## Welcome
+BetterContact API documentation is easy to use. It exists a first endpoint to submit one lead or a batch of leads to enriche and a second enpoint to fetch the results.
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+<Note>
+  You can also set up a webhook url in the first API call and the results will be directly pushed to this url once done. No need to fetch the results asynchronously.
+</Note>
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+All API endpoints are authenticated using the parameter _api_key_ to provide in the request.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
+This API key can be found [here](https://app.bettercontact.rocks/api) in your BetterContact account.
+
