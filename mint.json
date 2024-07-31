@@ -1,24 +1,24 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "API Documentation",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#4C18BF",
+    "light": "#BCB1FF",
+    "dark": "#220E5F",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#4C18BF",
+      "to": "#5F20F7"
     }
   },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:contact@bettercontact.rocks"
     }
   ],
   "topbarCtaButton": {
@@ -35,17 +35,17 @@
     {
       "name": "Documentation",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "https://docs.bettercontact.rocks"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "name": "App",
+      "icon": "code-square",
+      "url": "https://app.bettercontact.rocks"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://bettercontact.rocks/blog"
     }
   ],
   "navigation": [
