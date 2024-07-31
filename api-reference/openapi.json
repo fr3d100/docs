@@ -19,17 +19,16 @@
     }
   ],
   "paths": {
-    "/plants": {
+    "/async/:reques_id": {
       "get": {
-        "description": "Returns all plants from the system that the user has access to",
+        "description": "Returns the results of a submitted enrichment",
         "parameters": [
           {
-            "name": "limit",
+            "name": "request_id",
             "in": "query",
-            "description": "The maximum number of results to return",
+            "description": "The request id you got in response from your previous call",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "text"
             }
           }
         ],
@@ -47,8 +46,18 @@
               }
             }
           },
-          "400": {
-            "description": "Unexpected error",
+          "401": {
+            "description": "Not Authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Request_id not found",
             "content": {
               "application/json": {
                 "schema": {
@@ -60,7 +69,7 @@
         }
       },
       "post": {
-        "description": "Creates a new plant in the store",
+        "description": "Create a new enrichment",
         "requestBody": {
           "description": "Plant to add to the store",
           "content": {
@@ -73,8 +82,8 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "plant response",
+          "201": {
+            "description": "Enrichment task created",
             "content": {
               "application/json": {
                 "schema": {
@@ -83,8 +92,8 @@
               }
             }
           },
-          "400": {
-            "description": "unexpected error",
+          "401": {
+            "description": "Not authorized",
             "content": {
               "application/json": {
                 "schema": {
@@ -96,40 +105,6 @@
         }
       }
     },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  },
   "components": {
     "schemas": {
       "Plant": {
