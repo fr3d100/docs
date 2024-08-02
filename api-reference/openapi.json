@@ -85,7 +85,7 @@ paths:
                 $ref: '#/components/schemas/Error'
       security:
         - apiKey: []
-  /{request_id}:
+  /asyc/{request_id}:
     get:
       summary: Get enrichment results
       description: Retrieve the enrichment results for a specific request ID
