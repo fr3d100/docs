@@ -1,237 +1,316 @@
-openapi: 3.0.1
-info:
-  title: BetterContact API
-  description: The official BetterContact API to enrich your leads list
-  license:
-    name: MIT
-  version: 1.0.0
-servers:
-  - url: https://app.bettercontact.rocks/api/v2
-security:
-  - apiKey: []
-paths:
-  /async:
-    post:
-      description: Create a new enrichment
-      requestBody:
-        description: Data to enrich
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/NewLeadsEnrichment'
-      responses:
-        '201':
-          description: Enrichment task created
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  id:
-                    type: string
-                    example: your-request-id
-                  message:
-                    type: string
-                    example: Processing...
-        '401':
-          description: Not authorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-      security:
-        - apiKey: []
-  /another-path:
-    get:
-      description: Sample description for another path
-      responses:
-        '200':
-          description: Successful response
-  /account:
-    get:
-      summary: Check your credits balance
-      parameters:
-        - name: email
-          in: query
-          schema:
-            type: string
-          required: true
-      responses:
-        '200':
-          description: Credit balance retrieved successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  credits_left:
-                    type: integer
-                    example: 32377
-                  email:
-                    type: string
-                    example: your_email@mycompany.com
-        '401':
-          description: Not authorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-      security:
-        - apiKey: []
-  /asyc/{request_id}:
-    get:
-      summary: Get enrichment results
-      description: Retrieve the enrichment results for a specific request ID
-      parameters:
-        - name: request_id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Enrichment results retrieved successfully
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    example: fefbc2203558eb3adcea
-                  status:
-                    type: string
-                    example: terminated
-                  credits_consumed:
-                    type: integer
-                    example: 1
-                  credits_left:
-                    type: integer
-                    example: 331
-                  summary:
-                    type: object
-                    properties:
-                      total:
-                        type: integer
-                        example: 1
-                      valid:
-                        type: integer
-                        example: 1
-                      catch_all:
-                        type: integer
-                        example: 0
-                      catch_all_safe:
-                        type: integer
-                        example: 0
-                      catch_all_not_safe:
-                        type: integer
-                        example: 0
-                      undeliverable:
-                        type: integer
-                        example: 0
-                      not_found:
-                        type: integer
-                        example: 0
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        enriched:
-                          type: boolean
-                          example: true
-                        email_provider:
-                          type: string
-                          example: XXX
-                        contact_first_name:
-                          type: string
-                          example: Elon
-                        contact_last_name:
-                          type: string
-                          example: Musk
-                        contact_email_address:
-                          type: string
-                          example: elon@tesla.com
-                        contact_email_address_status:
-                          type: string
-                          example: deliverable
-                        contact_gender:
-                          type: string
-                          example: male
-                        contact_job_title:
-                          type: string
-                          example: CEO of Tesla
-        '401':
-          description: Not authorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-      security:
-        - apiKey: []
-components:
-  schemas:
-    NewLeadsEnrichment:
-      type: object
-      properties:
-        data:
-          description: Array of leads to enrich
-          type: array
-          items:
-            type: object
-            properties:
-              first_name:
-                type: string
-              last_name:
-                type: string
-              company:
-                type: string
-              company_domain:
-                type: string
-              linkedin_url:
-                type: string
-              custom_fields:
-                type: object
-                properties:
-                  uuid:
-                    type: string
-                  list:
-                    type: string
-            required:
-              - first_name
-              - last_name
-              - company
-        webhook:
-          description: You can provide a webhook url where results will be pushed once enrichment is done
-          type: string
-        verify_catch_all:
-          description: If activated, catch_all email address will be verified to avoid using risky emails
-          type: boolean
-        process_flow:
-          description: In case you subscribed to the process flow add-on, you can add the process flow ID you wanna use for your enrichment
-          type: string
-      required:
-        - data
-    Error:
-      required:
-        - error
-        - message
-      type: object
-      properties:
-        error:
-          type: integer
-          format: int32
-        message:
-          type: string
-  securitySchemes:
-    apiKey:
-      type: apiKey
-      name: api_key
-      in: query
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "BetterContact API",
+    "description": "The official BetterContact API to enrich your leads list",
+    "license": {
+      "name": "MIT"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://app.bettercontact.rocks/api/v2"
+    }
+  ],
+  "security": [
+    {
+      "apiKey": []
+    }
+  ],
+  "paths": {
+    "/async": {
+      "post": {
+        "description": "Create a new enrichment",
+        "requestBody": {
+          "description": "Data to enrich",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewLeadsEnrichment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Enrichment task created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "id": {
+                      "type": "string",
+                      "example": "your-request-id"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Processing..."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/another-path": {
+      "get": {
+        "description": "Sample description for another path",
+        "responses": {
+          "200": {
+            "description": "Successful response"
+          }
+        }
+      }
+    },
+    "/account": {
+      "get": {
+        "summary": "Check your credits balance",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Credit balance retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "credits_left": {
+                      "type": "integer",
+                      "example": 32377
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "your_email@mycompany.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/async/{request_id}": {
+      "get": {
+        "summary": "Get enrichment results",
+        "description": "Retrieve the enrichment results for a specific request ID",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Enrichment results retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "fefbc2203558eb3adcea"
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "terminated"
+                    },
+                    "credits_consumed": {
+                      "type": "integer",
+                      "example": 1
+                    },
+                    "credits_left": {
+                      "type": "integer",
+                      "example": 331
+                    },
+                    "summary": {
+                      "type": "object",
+                      "properties": {
+                        "total": { "type": "integer", "example": 1 },
+                        "valid": { "type": "integer", "example": 1 },
+                        "catch_all": { "type": "integer", "example": 0 },
+                        "catch_all_safe": { "type": "integer", "example": 0 },
+                        "catch_all_not_safe": { "type": "integer", "example": 0 },
+                        "undeliverable": { "type": "integer", "example": 0 },
+                        "not_found": { "type": "integer", "example": 0 }
+                      }
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "enriched": { "type": "boolean", "example": true },
+                          "email_provider": { "type": "string", "example": "XXX" },
+                          "contact_first_name": { "type": "string", "example": "Elon" },
+                          "contact_last_name": { "type": "string", "example": "Musk" },
+                          "contact_email_address": { "type": "string", "example": "elon@tesla.com" },
+                          "contact_email_address_status": { "type": "string", "example": "deliverable" },
+                          "contact_gender": { "type": "string", "example": "male" },
+                          "contact_job_title": { "type": "string", "example": "CEO of Tesla" },
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "NewLeadsEnrichment": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "description": "Array of leads to enrich",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "company": {
+                  "type": "string"
+                },
+                "company_domain": {
+                  "type": "string"
+                },
+                "linkedin_url": {
+                  "type": "string"
+                },
+                "custom_fields": {
+                  "type": "object",
+                  "properties": {
+                    "uuid": {
+                      "type": "string"
+                    },
+                    "list": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": ["first_name", "last_name", "company"]
+            }
+          },
+          "webhook": {
+            "description": "You can provide a webhook url where results will be pushed once enrichment is done",
+            "type": "string"
+          },
+          "verify_catch_all": {
+            "description": "If activated, catch_all email address will be verified to avoid using risky emails",
+            "type": "boolean"
+          },
+          "process_flow": {
+            "description": "In case you subscribed to the process flow add-on, you can add the process flow ID you wanna use for your enrichment",
+            "type": "string"
+          }
+        },
+        "required": ["data"]
+      },
+      "Error": {
+        "required": [
+          "error",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "query"
+      }
+    }
+  }
+}
