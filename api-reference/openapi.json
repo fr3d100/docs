@@ -91,14 +91,6 @@
         "summary": "Check your credits balance",
         "parameters": [
           {
-            "name": "api_key",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          },
-          {
             "name": "email",
             "in": "query",
             "schema": {
