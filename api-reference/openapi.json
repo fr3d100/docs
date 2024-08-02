@@ -19,6 +19,119 @@
     }
   ],
   "paths": {
+    "/async": {
+      "post": {
+        "description": "Create a new enrichment",
+        "requestBody": {
+          "description": "Data to enrich",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewLeadsEnrichment"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Enrichment task created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "id": {
+                      "type": "string",
+                      "example": "your-request-id"
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Processing..."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/account": {
+      "get": {
+        "summary": "Check your credits balance",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Credit balance retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "credits_left": {
+                      "type": "integer",
+                      "example": 32377
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "your_email@mycompany.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
     "/async/{request_id}": {
       "get": {
         "summary": "Get enrichment results",
@@ -95,12 +208,12 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Error"
+                  "$ref": "#/components/schemas/UnauthorizedError"
                 }
               }
             }
           },
-          "406": {  
+          "406": {
             "description": "Invalid request_id",
             "content": {
               "application/json": {
@@ -194,6 +307,15 @@
           },
           "message": {
             "type": "string"
+          }
+        }
+      },
+      "UnauthorizedError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "You are not authorized. Please check your api_key."
           }
         }
       }
