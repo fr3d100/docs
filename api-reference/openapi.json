@@ -19,129 +19,6 @@
     }
   ],
   "paths": {
-    "/async": {
-      "post": {
-        "description": "Create a new enrichment",
-        "requestBody": {
-          "description": "Data to enrich",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewLeadsEnrichment"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Enrichment task created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "id": {
-                      "type": "string",
-                      "example": "your-request-id"
-                    },
-                    "message": {
-                      "type": "string",
-                      "example": "Processing..."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Not authorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ]
-      }
-    },
-    "/another-path": {
-      "get": {
-        "description": "Sample description for another path",
-        "responses": {
-          "200": {
-            "description": "Successful response"
-          }
-        }
-      }
-    },
-    "/account": {
-      "get": {
-        "summary": "Check your credits balance",
-        "parameters": [
-          {
-            "name": "email",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Credit balance retrieved successfully",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "success": {
-                      "type": "boolean",
-                      "example": true
-                    },
-                    "credits_left": {
-                      "type": "integer",
-                      "example": 32377
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "your_email@mycompany.com"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Not authorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "apiKey": []
-          }
-        ]
-      }
-    },
     "/async/{request_id}": {
       "get": {
         "summary": "Get enrichment results",
@@ -219,6 +96,22 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "406": {  // Nouveau type de réponse ajouté
+            "description": "Invalid request_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unvalid request_id."
+                    }
+                  }
                 }
               }
             }
