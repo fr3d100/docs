@@ -12,15 +12,12 @@ BetterContact API purpose is to be the only API you need to integrate for your l
 <AccordionGroup>
   <Accordion icon="upload" title="Submit your lead(s) to enrich">
     BetterContact API have a signle endpoint to enrich a single lead or a batch up to 100 contacts at a time.
-    [See endpoint](/api-reference/endpoint/create)
+    [>See endpoint](/api-reference/endpoint/create)
   </Accordion>
   <Accordion icon="download" title="Fetch results">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
+    Waterfall enrichment requires a couple of seconds to requests all providers and verify data. Once you have submited your leads, you have to fetch the enriched data. /
+    You can also provide a webhook url in the submit call to instantly get the results without need to fetch it.
+    [>See endpoint](/api-reference/endpoint/get)]
   </Accordion>
 </AccordionGroup>
 
