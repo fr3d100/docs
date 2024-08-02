@@ -1,4 +1,56 @@
 ---
-title: 'Get enrichment results'
-openapi: 'GET /async/{request_id}'
+title: Get Enrichment Results
 ---
+
+## Get Enrichment Results
+
+Retrieve the enrichment results for a specific request ID.
+
+### Request
+
+`GET /async/{request_id}`
+
+### Path Parameters
+
+| Parameter   | Type   | Description                           |
+| ----------- | ------ | ------------------------------------- |
+| request_id  | string | The ID of the enrichment request      |
+
+### Response
+
+| Status Code | Description                          |
+| ----------- | ------------------------------------ |
+| 200         | Enrichment results retrieved         |
+| 401         | Not authorized                       |
+
+#### Successful Response
+
+```json
+{
+  "id": "fefbc2203558eb3adcea",
+  "status": "terminated",
+  "credits_consumed": 1,
+  "credits_left": 331,
+  "summary": {
+    "total": 1,
+    "valid": 1,
+    "catch_all": 0,
+    "catch_all_safe": 0,
+    "catch_all_not_safe": 0,
+    "undeliverable": 0,
+    "not_found": 0
+  },
+  "data": [
+    {
+      "enriched": true,
+      "email_provider": "XXX",
+      "contact_first_name": "Elon",
+      "contact_last_name": "Musk",
+      "contact_email_address": "elon@tesla.com",
+      "contact_email_address_status": "deliverable",
+      "contact_gender": "male",
+      "contact_job_title": "CEO of Tesla",
+      // Other properties here...
+    }
+  ]
+}
