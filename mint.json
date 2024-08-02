@@ -22,8 +22,8 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Go to app",
+    "url": "https://app.bettercontact.rocks"
   },
   "tabs": [
     {
