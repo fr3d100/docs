@@ -100,7 +100,7 @@
               }
             }
           },
-          "406": {  // Nouveau type de réponse ajouté
+          "406": {  
             "description": "Invalid request_id",
             "content": {
               "application/json": {
