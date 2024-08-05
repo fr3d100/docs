@@ -292,7 +292,7 @@
             "type": "boolean"
           },
           "process_flow": {
-            "description": "In case you subscribed to the process flow add-on, you can add the process flow ID you wanna use for your enrichment",
+            "description": "In case you subscribed to the process flow add-on, you can add the process flow ID you wanna use for your enrichment. Require process flow add-on",
             "type": "string"
           }
         },
