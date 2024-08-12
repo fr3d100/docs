@@ -1,36 +1,36 @@
 ---
 title: 'Quickstart'
-description: 'Enrich your leads with the best waterfall tool in a couple of minutes !'
+description: 'Enrich your leads with the best waterfall enrichment provider within minutes!'
 ---
 
 ### Purpose
 
-BetterContact API purpose is to be the only API you need to integrate for your leads and contact enrichment. No more need to create in-house waterfall enrichment process with dozens of API calls to several providers.
+BetterContact API’s purpose is to serve as the only API you need for your contact data enrichment. No need to create an in-house waterfall enrichment process with several API calls to different providers.
 
 ### What BetterContact does
 
 <AccordionGroup>
 
 <Accordion icon="1" title="Request providers in relevant sequence">
-  According to the leads information provided, BetterContact determine the optimal sequence to find requested data.
+ According to the information provided about the lead, BetterContact determines the optimal provider sequence to maximize the enrichment rate.
 </Accordion>
-<Accordion icon="2" title="Verify provider data once found">
-  Once a provider return a data, we verify it and deliver it to you only if valid.
+<Accordion icon="2" title="Verify the provided contact data">
+  Once a provider returns contact data, we verify it through various layers and only push back valid data to you.
 </Accordion>
-<Accordion icon="3" title="Request next providers untill data is verified">
-  If not, BetterContact will request next providers untill correct data is found
+<Accordion icon="3" title="Request providers until valid data is found">
+  If one provider’s data is invalid, BetterContact will request the following providers until valid data is found.
 </Accordion>
 
 </AccordionGroup>
 
 ### Enrichable data
 
-BetterContact allows you to find different data point on your contacts:
+BetterContact allows you to enrich different data points of your contacts.
 
 <CardGroup>
 
 <Card title="Direct phone number" icon="phone" href="/api-reference/endpoint/create">
-  Get your lead direct phone number for cold call purpose.
+  Get your lead’s verified mobile phone number.
 </Card>
 
 <Card
@@ -38,23 +38,22 @@ BetterContact allows you to find different data point on your contacts:
   icon="envelope"
   href="/api-reference/endpoint/create"
 >
-   Get your lead work email address for cold email purpose.
+   Get your lead’s verified work email address.
 </Card>
 
 </CardGroup>
 
-BetterContact also verify risky and catch_all email to save your bounce rate.
+BetterContact also verifies risky and catch_all email to reduce your bounce rate and protect your domain reputation.
 
 ### How it works
 
 <AccordionGroup>
   <Accordion icon="upload" title="Submit your lead(s) to enrich">
-    BetterContact API have a signle endpoint to enrich a single lead or a batch up to 100 contacts at a time.
+    BetterContact’s API has a single endpoint to enrich a single lead or a batch up to 100 contacts at a time. 
     [>See endpoint](/api-reference/endpoint/create)
   </Accordion>
   <Accordion icon="download" title="Fetch results">
-    Waterfall enrichment requires a couple of seconds to requests all providers and verify data. Once you have submited your leads, you have to fetch the enriched data. /
-    You can also provide a webhook url in the submit call to instantly get the results without need to fetch it.
+    Waterfall enrichment requires a couple of seconds to request all providers and verify data. Once you have submitted your leads, you have to fetch the enriched data. Alternatively, you can provide a webhook URL in the submit call to instantly get the results without the need to fetch it.
     [>See endpoint](/api-reference/endpoint/get)]
   </Accordion>
 </AccordionGroup>
