@@ -294,9 +294,13 @@
           "process_flow": {
             "description": "In case you subscribed to the process flow add-on, you can add the process flow ID you wanna use for your enrichment. Require process flow add-on",
             "type": "string"
+          },
+          "enriched_email_address": {
+            "description": "Will enrich email address of your lead if true",
+            "type": "boolean"
           }
         },
-        "required": ["data"]
+        "required": ["data", "enriched_email_address"]
       },
       "Error": {
         "required": [
@@ -327,9 +331,4 @@
     "securitySchemes": {
       "apiKey": {
         "type": "apiKey",
-        "name": "api_key",
-        "in": "query"
-      }
-    }
-  }
-}
+        "name
