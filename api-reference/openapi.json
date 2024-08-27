@@ -243,6 +243,26 @@
       "NewLeadsEnrichment": {
         "type": "object",
         "properties": {
+          "enrich_email_address": {
+            "description": "Will enrich email address of your lead if true",
+            "type": "boolean"
+          },
+          "enrich_phone_number": {
+            "description": "If true, direct phone number of the lead will be also enriched. Required pro plan",
+            "type": "boolean"
+          },
+          "webhook": {
+            "description": "You can provide a webhook url where results will be pushed once enrichment is done",
+            "type": "string"
+          },
+          "verify_catch_all": {
+            "description": "If true, catch_all email address will be verified to avoid using risky emails. Required pro plan",
+            "type": "boolean"
+          },
+          "process_flow": {
+            "description": "In case you subscribed to the process flow add-on, you can add the process flow ID you wanna use for your enrichment. Require process flow add-on",
+            "type": "string"
+          },
           "data": {
             "description": "Array of leads to enrich",
             "type": "array",
@@ -278,29 +298,9 @@
               },
               "required": ["first_name", "last_name", "company"]
             }
-          },
-          "webhook": {
-            "description": "You can provide a webhook url where results will be pushed once enrichment is done",
-            "type": "string"
-          },
-          "verify_catch_all": {
-            "description": "If true, catch_all email address will be verified to avoid using risky emails. Required pro plan",
-            "type": "boolean"
-          },
-          "enrich_phone_number": {
-            "description": "If true, direct phone number of the lead will be also enriched. Required pro plan",
-            "type": "boolean"
-          },
-          "process_flow": {
-            "description": "In case you subscribed to the process flow add-on, you can add the process flow ID you wanna use for your enrichment. Require process flow add-on",
-            "type": "string"
-          },
-          "enriched_email_address": {
-            "description": "Will enrich email address of your lead if true",
-            "type": "boolean"
           }
         },
-        "required": ["data", "enriched_email_address"]
+        "required": ["data", "enrich_email_address"]
       },
       "Error": {
         "required": [
@@ -318,17 +318,4 @@
           }
         }
       },
-      "UnauthorizedError": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "string",
-            "example": "You are not authorized. Please check your api_key."
-          }
-        }
-      }
-    },
-    "securitySchemes": {
-      "apiKey": {
-        "type": "apiKey",
-        "name
+     
