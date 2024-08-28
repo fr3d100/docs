@@ -284,7 +284,7 @@
             "type": "boolean"
           },
           "enrich_phone_number": {
-            "description": "If true, direct phone number of the lead will be also enriched. Required pro plan",
+            "description": "If true, direct phone number of the lead will be also enriched. Requires pro plan",
             "type": "boolean"
           },
           "webhook": {
@@ -296,7 +296,7 @@
             "type": "boolean"
           },
           "process_flow": {
-            "description": "In case you subscribed to the process flow add-on, you can add the process flow ID you wanna use for your enrichment. Require process flow add-on",
+            "description": "In case you subscribed to the process flow add-on, you can add the process flow ID you wanna use for your enrichment. Requires process flow add-on",
             "type": "string"
           }
         },
