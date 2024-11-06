@@ -89,27 +89,33 @@
               "type": "object",
               "properties": {
                 "first_name": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "First name of the contact"
                 },
                 "last_name": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Last name of the contact"
                 },
                 "company": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Company name of the contact"
                 },
                 "company_domain": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "company domain of the contact"
                 },
                 "linkedin_url": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "Linkedin profile url of the contact (public url is preferred)"
                 },
                 "custom_fields": {
                   "type": "object",
+                  "description": "Can be any relevant data you want to be back in the response like CRM id or unique identifier. The following data (uuid, list_name) is just an example",
                   "properties": {
                     "uuid": {
                       "type": "string"
                     },
-                    "list": {
+                    "list_name": {
                       "type": "string"
                     }
                   }
