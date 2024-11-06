@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "BetterContact API",
-    "description": "The official BetterContact API to enrich your leads list",
+    "description": "The official BetterContact API to enrich your contacts list",
     "license": {
       "name": "MIT"
     },
@@ -83,7 +83,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "description": "Array of leads to enrich",
+            "description": "Array of contacts to enrich",
             "type": "array",
             "items": {
               "type": "object",
@@ -125,11 +125,11 @@
             }
           },
           "enrich_email_address": {
-            "description": "If true, work email address of the lead will be enriched.",
+            "description": "If true, work email address of the contact will be enriched.",
             "type": "boolean"
           },
           "enrich_phone_number": {
-            "description": "If true, direct phone number of the lead will also be enriched. Requires pro plan.",
+            "description": "If true, direct phone number of the contact will also be enriched. Requires pro plan.",
             "type": "boolean"
           },
           "webhook": {
