@@ -253,7 +253,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "description": "Array of contacts to enrich",
+            "description": "Array of contacts to enrich. \nOnly company name OR domain is required. If you provide both it will help the enrichment rate". And also add : "Linkedin profile url is recommended for phone enrichment",
             "type": "array",
             "items": {
               "type": "object",
