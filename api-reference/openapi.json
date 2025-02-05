@@ -276,7 +276,7 @@
                 },
                 "linkedin_url": {
                   "type": "string",
-                  "description": "Linkedin profile url of the contact (recommended if phone mobile enrichment is requested)."
+                  "description": "Linkedin profile url of the contact (recommended if phone number enrichment is requested)."
                 },
                 "custom_fields": {
                   "type": "object",
