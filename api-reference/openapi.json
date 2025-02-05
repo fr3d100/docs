@@ -253,7 +253,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "description": "Array of contacts to enrich. \nOnly company name OR domain is mandatory but providing both is better",
+            "description": "Array of contacts to enrich.",
             "type": "array",
             "items": {
               "type": "object",
@@ -299,23 +299,19 @@
             "type": "boolean"
           },
           "enrich_phone_number": {
-            "description": "If true, direct phone number of the contact will also be enriched. Requires pro plan.",
+            "description": "If true, direct phone number of the contact will be enriched.",
             "type": "boolean"
           },
           "webhook": {
             "description": "You can provide a webhook URL where results will be pushed once enrichment is done.",
             "type": "string"
           },
-          "verify_catch_all": {
-            "description": "If true, catch-all email addresses will be verified to avoid risky emails. Requires pro plan.",
-            "type": "boolean"
-          },
           "process_flow": {
             "description": "Add the process flow ID to use for your enrichment, if subscribed to the process flow add-on.",
             "type": "string"
           }
         },
-        "required": ["data", "enrich_email_address"]
+        "required": ["data", "enrich_email_address","enrich_phone_number"]
       },
       "Error": {
         "required": [
