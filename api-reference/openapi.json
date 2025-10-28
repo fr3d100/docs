@@ -22,6 +22,17 @@
     "/async": {
       "post": {
         "description": "Create a new enrichment",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "your api key"
+          }
+        ],
         "requestBody": {
           "description": "Data to enrich",
           "required": true,
@@ -153,6 +164,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "your api key"
           }
         ],
         "responses": {
@@ -276,7 +296,7 @@
                 },
                 "linkedin_url": {
                   "type": "string",
-                  "description": "Linkedin profile url of the contact (public url is preferred)"
+                  "description": "Linkedin profile url of the contact (public url is required)"
                 },
                 "custom_fields": {
                   "type": "object",
@@ -305,10 +325,6 @@
           "webhook": {
             "description": "You can provide a webhook URL where results will be pushed once enrichment is done.",
             "type": "string"
-          },
-          "verify_catch_all": {
-            "description": "If true, catch-all email addresses will be verified to avoid risky emails. Requires pro plan.",
-            "type": "boolean"
           },
           "process_flow": {
             "description": "Add the process flow ID to use for your enrichment, if subscribed to the process flow add-on.",
