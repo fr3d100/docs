@@ -273,7 +273,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "description": "Array of contacts to enrich",
+            "description": "Array of contacts to enrich.",
             "type": "array",
             "items": {
               "type": "object",
@@ -288,15 +288,15 @@
                 },
                 "company": {
                   "type": "string",
-                  "description": "Company name of the contact"
+                  "description": "Company name of the contact (not required if company domain is provided)."
                 },
                 "company_domain": {
                   "type": "string",
-                  "description": "company domain of the contact"
+                  "description": "Company domain of the contact (required if company name not provided)."
                 },
                 "linkedin_url": {
                   "type": "string",
-                  "description": "Linkedin profile url of the contact (public url is required)"
+                  "description": "Linkedin profile url of the contact (public url is required - recommended if phone number enrichment is requested)."
                 },
                 "custom_fields": {
                   "type": "object",
@@ -319,7 +319,7 @@
             "type": "boolean"
           },
           "enrich_phone_number": {
-            "description": "If true, direct phone number of the contact will also be enriched. Requires pro plan.",
+            "description": "If true, direct phone number of the contact will be enriched.",
             "type": "boolean"
           },
           "webhook": {
@@ -331,7 +331,7 @@
             "type": "string"
           }
         },
-        "required": ["data", "enrich_email_address"]
+        "required": ["data", "enrich_email_address","enrich_phone_number"]
       },
       "Error": {
         "required": [
