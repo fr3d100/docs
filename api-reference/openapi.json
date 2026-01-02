@@ -309,7 +309,8 @@
       "apiKey": {
         "type": "apiKey",
         "in": "header",
-        "name": "X-API-Key"
+        "name": "X-API-Key",
+        "description": "The API key of your BetterContact account you can get from https://app.bettercontact.rocks/api"
       }
     },
     "schemas": {
