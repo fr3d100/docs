@@ -22,17 +22,6 @@
     "/async": {
       "post": {
         "description": "Create a new enrichment",
-        "parameters": [
-          {
-            "name": "X-API-Key",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "your api key"
-          }
-        ],
         "requestBody": {
           "description": "Data to enrich",
           "required": true,
