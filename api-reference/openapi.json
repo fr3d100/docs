@@ -562,11 +562,11 @@
         "properties": {
           "id": {
             "type": "string",
-            "example": "779b3de9b3f846e8d9c8"
+            "example": "f4eaa33f3d6fd1d8e1a7"
           },
           "credits_left": {
             "type": "string",
-            "example": "9990.8"
+            "example": "993.3"
           },
           "credits_consumed": {
             "type": "string",
@@ -581,7 +581,7 @@
             "properties": {
               "leads_found": {
                 "type": "integer",
-                "example": 1
+                "example": 55
               }
             }
           },
@@ -598,7 +598,7 @@
         "properties": {
           "contact_id": {
             "type": "integer",
-            "example": 77039
+            "example": 32680300
           },
           "contact_full_name": {
             "type": "string",
@@ -618,29 +618,49 @@
           },
           "contact_seniority": {
             "type": "string",
-            "example": "founder"
+            "example": "Founder"
           },
           "contact_headline": {
             "type": "string",
-            "example": "find emails and phones with bettercontact waterfall enrichment"
+            "example": "Find emails and phones with bettercontact waterfall enrichment"
+          },
+          "contact_industry": {
+            "type": "string",
+            "example": "Information technology & services"
           },
           "contact_linkedin_profile_url": {
             "type": "string",
             "example": "https://www.linkedin.com/in/fbonnand"
           },
+          "contact_linkedin_id": {
+            "type": "string",
+            "nullable": true
+          },
           "contact_location_continent": {
             "type": "string",
-            "example": "europe"
+            "example": "Europe"
           },
           "contact_location_country": {
             "type": "string",
-            "example": "france"
+            "example": "France"
           },
           "contact_location_state": {
             "type": "string",
             "nullable": true
           },
           "contact_location_city": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_city": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_location": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_country_code": {
             "type": "string",
             "nullable": true
           },
@@ -668,6 +688,46 @@
             "type": "string",
             "nullable": true
           },
+          "contact_avatar": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_activity": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_followers": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_connections": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_experience": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_current_company": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_people_also_viewed": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_posts": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_id": {
+            "type": "string",
+            "nullable": true
+          },
           "company_name": {
             "type": "string",
             "example": "Bettercontact"
@@ -678,31 +738,103 @@
           },
           "company_description": {
             "type": "string",
-            "example": "bettercontact aggregates 20+ premium contact data providers..."
+            "example": "Bettercontact aggregates 20+ premium contact data providers such as people data labs, rocketreach, and datagma into one subscription."
+          },
+          "company_about": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_image": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_size": {
+            "type": "string",
+            "nullable": true
           },
           "company_linkedin_url": {
             "type": "string",
             "example": "https://www.linkedin.com/company/bettercontact"
           },
+          "company_linkedin_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_website": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_crunchbase_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_directions_url": {
+            "type": "string",
+            "nullable": true
+          },
           "company_industry": {
             "type": "string",
-            "example": "software development"
+            "example": "Software development"
+          },
+          "company_industries": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_industry_code": {
+            "type": "string",
+            "nullable": true
           },
           "company_type": {
             "type": "string",
             "example": "privately_held"
           },
+          "company_organization_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_founded": {
+            "type": "string",
+            "nullable": true
+          },
           "company_founded_year": {
             "type": "integer",
             "example": 2022
           },
-          "company_head_quarters_city": {
+          "company_funding": {
             "type": "string",
-            "example": "lyon"
+            "nullable": true
           },
-          "company_head_quarters_country": {
+          "company_investors": {
             "type": "string",
-            "example": "france"
+            "nullable": true
+          },
+          "company_stock_info": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_similar": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_specialities": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_employees": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_employees_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_employees_in_linkedin": {
+            "type": "string",
+            "nullable": true
           },
           "company_employees_range_start": {
             "type": "integer",
@@ -711,6 +843,67 @@
           "company_employees_range_end": {
             "type": "integer",
             "example": 50
+          },
+          "company_followers": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_head_quarters_city": {
+            "type": "string",
+            "example": "Lyon"
+          },
+          "company_head_quarters_country": {
+            "type": "string",
+            "example": "France"
+          },
+          "company_headquarters": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_address_street": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_address_city": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_address_state": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_address_country": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_address_zipcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_formatted_locations": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_country_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_phone_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_legal_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_legal_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "custom_fields": {
+            "type": "array",
+            "items": {},
+            "example": []
           }
         }
       },
