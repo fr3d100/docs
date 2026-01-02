@@ -58,20 +58,20 @@
       "pages": ["api-reference/introduction"]
     },
     {
-      "group": "Endpoints",
+      "group": "My account",
       "pages": [
         "api-reference/endpoint/account"
       ]
     },
     {
-      "group": "I'm looking for new leads",
+      "group": "Lead Finder - Get new leads",
       "pages": [
         "api-reference/endpoint/lead_finder_post",
         "api-reference/endpoint/lead_finder_get"
       ]
     },
     {
-      "group": "I have leads to enrich",
+      "group": "Waterfall enrichment - Get phone and email",
       "pages": [
         "api-reference/endpoint/create",
         "api-reference/endpoint/get"
