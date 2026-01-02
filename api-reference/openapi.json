@@ -218,16 +218,7 @@
             "description": "Request results retrieved successfully",
             "content": {
               "application/json": {
-                "schema": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/EnrichmentResult"
-                    },
-                    {
-                      "$ref": "#/components/schemas/LeadFinderResult"
-                    }
-                  ]
-                }
+                "schema": "$ref": "#/components/schemas/EnrichmentResult"
               }
             }
           },
@@ -284,16 +275,7 @@
             "description": "Request results retrieved successfully",
             "content": {
               "application/json": {
-                "schema": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/EnrichmentResult"
-                    },
-                    {
-                      "$ref": "#/components/schemas/LeadFinderResult"
-                    }
-                  ]
-                }
+                "schema": "$ref": "#/components/schemas/LeadFinderResult"
               }
             }
           },
