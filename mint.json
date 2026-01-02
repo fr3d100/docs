@@ -60,7 +60,19 @@
     {
       "group": "Endpoints",
       "pages": [
-        "api-reference/endpoint/account",
+        "api-reference/endpoint/account"
+      ]
+    },
+    {
+      "group": "I'm looking for new leads",
+      "pages": [
+        "api-reference/endpoint/lead_finder_post",
+        "api-reference/endpoint/lead_finder_get"
+      ]
+    },
+    {
+      "group": "I have leads to enrich",
+      "pages": [
         "api-reference/endpoint/create",
         "api-reference/endpoint/get"
       ]
