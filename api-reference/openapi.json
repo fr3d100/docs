@@ -209,7 +209,7 @@
         ]
       }
     },
-    "/async": {
+    "/async/{request_id}": {
       "get": {
         "summary": "Get request results",
         "description": "Retrieve the results for a specific request ID (works for both enrichment and lead finder requests)",
@@ -293,7 +293,7 @@
         ]
       }
     },
-    "/lead_finder/async": {
+    "/lead_finder/async/{request_id}": {
       "get": {
         "summary": "Get Lead Finder request results",
         "description": "Retrieve the results for a specific request ID",
