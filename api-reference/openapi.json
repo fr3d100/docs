@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "BetterContact API",
-    "description": "The official BetterContact API to enrich your contacts list",
+    "description": "The official BetterContact API to enrich your contacts list and find leads",
     "license": {
       "name": "MIT"
     },
@@ -41,7 +41,6 @@
               "schema": {
                 "$ref": "#/components/schemas/NewLeadsEnrichment"
               }
-              
             }
           }
         },
@@ -64,6 +63,74 @@
                     "message": {
                       "type": "string",
                       "example": "Processing..."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/lead_finder/async": {
+      "post": {
+        "description": "Create a new lead finder request to find people working in specific companies",
+        "parameters": [
+          {
+            "name": "api_key",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "your api key"
+          }
+        ],
+        "requestBody": {
+          "description": "Filters and parameters for lead finding",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LeadFinderRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Lead finder request accepted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean",
+                      "example": true
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Lead finder request accepted."
+                    },
+                    "request_id": {
+                      "type": "string",
+                      "example": "bc39ffbfc24cf043b748"
                     }
                   }
                 }
@@ -154,8 +221,8 @@
     },
     "/async/{request_id}": {
       "get": {
-        "summary": "Get enrichment results",
-        "description": "Retrieve the enrichment results for a specific request ID",
+        "summary": "Get request results",
+        "description": "Retrieve the results for a specific request ID (works for both enrichment and lead finder requests)",
         "parameters": [
           {
             "name": "request_id",
@@ -168,66 +235,36 @@
           {
             "name": "X-API-Key",
             "in": "header",
-            "required": true,
+            "required": false,
             "schema": {
               "type": "string"
             },
-            "description": "your api key"
+            "description": "your api key (can also be passed as query parameter)"
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "your api key (alternative to header)"
           }
         ],
         "responses": {
           "200": {
-            "description": "Enrichment results retrieved successfully",
+            "description": "Request results retrieved successfully",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "fefbc2203558eb3adcea"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/EnrichmentResult"
                     },
-                    "status": {
-                      "type": "string",
-                      "example": "terminated"
-                    },
-                    "credits_consumed": {
-                      "type": "integer",
-                      "example": 1
-                    },
-                    "credits_left": {
-                      "type": "integer",
-                      "example": 331
-                    },
-                    "summary": {
-                      "type": "object",
-                      "properties": {
-                        "total": { "type": "integer", "example": 1 },
-                        "valid": { "type": "integer", "example": 1 },
-                        "catch_all": { "type": "integer", "example": 0 },
-                        "catch_all_safe": { "type": "integer", "example": 0 },
-                        "catch_all_not_safe": { "type": "integer", "example": 0 },
-                        "undeliverable": { "type": "integer", "example": 0 },
-                        "not_found": { "type": "integer", "example": 0 }
-                      }
-                    },
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "enriched": { "type": "boolean", "example": true },
-                          "email_provider": { "type": "string", "example": "XXX" },
-                          "contact_first_name": { "type": "string", "example": "Elon" },
-                          "contact_last_name": { "type": "string", "example": "Musk" },
-                          "contact_email_address": { "type": "string", "example": "elon@tesla.com" },
-                          "contact_email_address_status": { "type": "string", "example": "deliverable" },
-                          "contact_gender": { "type": "string", "example": "male" },
-                          "contact_job_title": { "type": "string", "example": "CEO of Tesla" }
-                        }
-                      }
+                    {
+                      "$ref": "#/components/schemas/LeadFinderResult"
                     }
-                  }
+                  ]
                 }
               }
             }
@@ -265,9 +302,16 @@
           }
         ]
       }
-  }
-},
+    }
+  },
   "components": {
+    "securitySchemes": {
+      "apiKey": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "api_key"
+      }
+    },
     "schemas": {
       "NewLeadsEnrichment": {
         "type": "object",
@@ -331,7 +375,325 @@
             "type": "string"
           }
         },
-        "required": ["data", "enrich_email_address","enrich_phone_number"]
+        "required": ["data", "enrich_email_address", "enrich_phone_number"]
+      },
+      "LeadFinderRequest": {
+        "type": "object",
+        "properties": {
+          "filters": {
+            "$ref": "#/components/schemas/LeadFinderFilters"
+          },
+          "max_leads": {
+            "type": "integer",
+            "description": "Maximum number of leads to return",
+            "example": 100
+          },
+          "webhook": {
+            "type": "string",
+            "nullable": true,
+            "description": "Optional URL to receive results automatically"
+          }
+        },
+        "required": ["filters"]
+      },
+      "LeadFinderFilters": {
+        "type": "object",
+        "properties": {
+          "company": {
+            "$ref": "#/components/schemas/FilterObject"
+          },
+          "company_industry": {
+            "$ref": "#/components/schemas/FilterObject"
+          },
+          "company_technology": {
+            "$ref": "#/components/schemas/FilterObject"
+          },
+          "company_headcount_min": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000000,
+            "description": "Minimum employee count"
+          },
+          "company_headcount_max": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10000000,
+            "description": "Maximum employee count"
+          },
+          "lead_fullname": {
+            "$ref": "#/components/schemas/FilterObject"
+          },
+          "lead_linkedin_profile": {
+            "$ref": "#/components/schemas/FilterObject"
+          },
+          "lead_department": {
+            "$ref": "#/components/schemas/FilterObject"
+          },
+          "lead_function": {
+            "$ref": "#/components/schemas/FilterObject"
+          },
+          "lead_skills": {
+            "$ref": "#/components/schemas/FilterObject"
+          },
+          "lead_job_title": {
+            "$ref": "#/components/schemas/JobTitleFilter"
+          },
+          "lead_location": {
+            "$ref": "#/components/schemas/FilterObject"
+          }
+        }
+      },
+      "FilterObject": {
+        "type": "object",
+        "properties": {
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "description": "Values that must match"
+          },
+          "exclude": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "description": "Values that must NOT match"
+          }
+        }
+      },
+      "JobTitleFilter": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/FilterObject"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "exact_match": {
+                "type": "boolean",
+                "description": "When enabled, only exact job title matches are returned"
+              }
+            }
+          }
+        ]
+      },
+      "EnrichmentResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "fefbc2203558eb3adcea"
+          },
+          "status": {
+            "type": "string",
+            "example": "terminated"
+          },
+          "credits_consumed": {
+            "type": "integer",
+            "example": 1
+          },
+          "credits_left": {
+            "type": "integer",
+            "example": 331
+          },
+          "summary": {
+            "type": "object",
+            "properties": {
+              "total": { "type": "integer", "example": 1 },
+              "valid": { "type": "integer", "example": 1 },
+              "catch_all": { "type": "integer", "example": 0 },
+              "catch_all_safe": { "type": "integer", "example": 0 },
+              "catch_all_not_safe": { "type": "integer", "example": 0 },
+              "undeliverable": { "type": "integer", "example": 0 },
+              "not_found": { "type": "integer", "example": 0 }
+            }
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "enriched": { "type": "boolean", "example": true },
+                "email_provider": { "type": "string", "example": "XXX" },
+                "contact_first_name": { "type": "string", "example": "Elon" },
+                "contact_last_name": { "type": "string", "example": "Musk" },
+                "contact_email_address": { "type": "string", "example": "elon@tesla.com" },
+                "contact_email_address_status": { "type": "string", "example": "deliverable" },
+                "contact_gender": { "type": "string", "example": "male" },
+                "contact_job_title": { "type": "string", "example": "CEO of Tesla" }
+              }
+            }
+          }
+        }
+      },
+      "LeadFinderResult": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "779b3de9b3f846e8d9c8"
+          },
+          "credits_left": {
+            "type": "string",
+            "example": "9990.8"
+          },
+          "credits_consumed": {
+            "type": "string",
+            "example": "5.5"
+          },
+          "status": {
+            "type": "string",
+            "example": "terminated"
+          },
+          "summary": {
+            "type": "object",
+            "properties": {
+              "leads_found": {
+                "type": "integer",
+                "example": 1
+              }
+            }
+          },
+          "leads": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LeadObject"
+            }
+          }
+        }
+      },
+      "LeadObject": {
+        "type": "object",
+        "properties": {
+          "contact_id": {
+            "type": "integer",
+            "example": 77039
+          },
+          "contact_full_name": {
+            "type": "string",
+            "example": "Frédéric Bonnand"
+          },
+          "contact_first_name": {
+            "type": "string",
+            "example": "Frédéric"
+          },
+          "contact_last_name": {
+            "type": "string",
+            "example": "Bonnand"
+          },
+          "contact_job_title": {
+            "type": "string",
+            "example": "Founder @bettercontact"
+          },
+          "contact_seniority": {
+            "type": "string",
+            "example": "founder"
+          },
+          "contact_headline": {
+            "type": "string",
+            "example": "find emails and phones with bettercontact waterfall enrichment"
+          },
+          "contact_linkedin_profile_url": {
+            "type": "string",
+            "example": "https://www.linkedin.com/in/fbonnand"
+          },
+          "contact_location_continent": {
+            "type": "string",
+            "example": "europe"
+          },
+          "contact_location_country": {
+            "type": "string",
+            "example": "france"
+          },
+          "contact_location_state": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_location_city": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_email_address": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_email_address_status": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_email_address_provider": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_phone_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_phone_number_cc": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_additional_phone_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_name": {
+            "type": "string",
+            "example": "Bettercontact"
+          },
+          "company_domain": {
+            "type": "string",
+            "example": "bettercontact.rocks"
+          },
+          "company_description": {
+            "type": "string",
+            "example": "bettercontact aggregates 20+ premium contact data providers..."
+          },
+          "company_linkedin_url": {
+            "type": "string",
+            "example": "https://www.linkedin.com/company/bettercontact"
+          },
+          "company_industry": {
+            "type": "string",
+            "example": "software development"
+          },
+          "company_type": {
+            "type": "string",
+            "example": "privately_held"
+          },
+          "company_founded_year": {
+            "type": "integer",
+            "example": 2022
+          },
+          "company_head_quarters_city": {
+            "type": "string",
+            "example": "lyon"
+          },
+          "company_head_quarters_country": {
+            "type": "string",
+            "example": "france"
+          },
+          "company_employees_range_start": {
+            "type": "integer",
+            "example": 11
+          },
+          "company_employees_range_end": {
+            "type": "integer",
+            "example": 50
+          }
+        }
+      },
+      "UnauthorizedError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "example": "Unauthorized"
+          }
+        }
       },
       "Error": {
         "required": [
