@@ -23,7 +23,7 @@
       "post": {
         "description": "Create a new enrichment",
         "requestBody": {
-          "description": "Data to enrich",
+          "description": "Array of lead(s) enrich",
           "required": true,
           "content": {
             "application/json": {
