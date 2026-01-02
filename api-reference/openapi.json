@@ -231,15 +231,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "your api key (alternative to header)"
           }
         ],
         "responses": {
