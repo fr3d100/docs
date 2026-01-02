@@ -233,15 +233,6 @@
             }
           },
           {
-            "name": "X-API-Key",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "your api key (can also be passed as query parameter)"
-          },
-          {
             "name": "api_key",
             "in": "query",
             "required": false,
