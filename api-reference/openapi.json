@@ -209,36 +209,18 @@
         ]
       }
     },
-    "/async": {
+    "/async/{request_id}": {
       "get": {
         "summary": "Get request results",
         "description": "Retrieve the results for a specific request ID (works for both enrichment and lead finder requests)",
         "parameters": [
           {
             "name": "request_id",
-            "in": "query",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "X-API-Key",
-            "in": "header",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "your api key (can also be passed as query parameter)"
-          },
-          {
-            "name": "api_key",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "your api key (alternative to header)"
           }
         ],
         "responses": {
