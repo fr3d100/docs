@@ -219,7 +219,14 @@
             "content": {
               "application/json": {
                 "schema": {
-                "$ref": "#/components/schemas/EnrichmentResult"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/EnrichmentResult"
+                    },
+                    {
+                      "$ref": "#/components/schemas/LeadFinderResult"
+                    }
+                  ]
                 }
               }
             }
@@ -277,7 +284,9 @@
             "description": "Request results retrieved successfully",
             "content": {
               "application/json": {
-                "schema": "$ref": "#/components/schemas/LeadFinderResult"
+                "schema": {
+                  "$ref": "#/components/schemas/LeadFinderResult"
+                }
               }
             }
           },
