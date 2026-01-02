@@ -3,28 +3,65 @@ title: "Quickstart"
 description: "Find and Enrich your leads with the most powerful waterfall aggregator on the market"
 ---
 
-
 # What BetterContact does?
 
 <Columns cols={2}>
   <Card title="Find new leads" icon="address-book" iconType="solid" cta="Discover waterfall Lead Finder">
-    
-
     Based on an advanced **Company** and **People** filtering, find the perfect leads matching your criteria. Only fresh and accurate data.
   </Card>
   <Card title="Get lead's contact data" icon="sparkles" iconType="solid" cta="Discover waterfall Enrichment">
-    
-
-    Get **direct mobile phone numbers** and **work email address **of your leads you want to reach and convert them into customers.
+    Get **direct mobile phone numbers** and **work email address** of your leads you want to reach and convert them into customers.
   </Card>
 </Columns>
 
 
-# Lead Finder
+# Waterfall Lead Finder Search
 
-# Waterfall enrichment
+## Enriched Data
 
-### Enrichable data
+<Columns cols={2}>
+  <Card title="People information" icon="user-check" iconType="solid">
+    Get all the up to date Contact information such as Job Title, Full Name, Linkedin profile url, Location, Skills, ...
+  </Card>
+  <Card title="Company information" icon="building-circle-check" iconType="solid">
+    Get all the up to date contact's current Company information such as Name, Domain, HQ Location, Industry, Number of employee, ...
+  </Card>
+</Columns>
+
+## Principles
+
+<AccordionGroup>
+  <Accordion title="Gather data from multiple sources" icon="diagram-project" iconType="regular">
+    
+  </Accordion>
+  <Accordion title="Compile and verify data accuracy" icon="wand-magic-sparkles" iconType="regular">
+    
+  </Accordion>
+  <Accordion title="Deep check on criteria matching" icon="check-double" iconType="regular">
+    
+  </Accordion>
+</AccordionGroup>
+
+## How does API work
+
+<AccordionGroup>
+  <Accordion title="Submit your Lead Finder Search" icon="1" iconType="solid">
+    Based on your People and Company criteria, apply your filters and generate a new Lead Finder search.
+  </Accordion>
+  <Accordion title="Get your Lead Finder Search results" icon="2" iconType="solid">
+    Provide a webhook url or fetch the results to get the leads found in the Lead Finder Search matching your criteria.
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  **Lead Finder Search API is an async API.**\
+  Meaning you will have to submit your contacts to enruch then wait a few minutes to get the enriched data on your provided webhook or fecth the enriched data with the according endpoint.
+</Note>
+
+
+# Waterfall Email & Phone Enrichment
+
+## Enriched data
 
 <CardGroup>
   <Card title="Direct mobile phone number" icon="phone" iconType="solid" href="/api-reference/endpoint/create">
@@ -35,28 +72,27 @@ description: "Find and Enrich your leads with the most powerful waterfall aggreg
   </Card>
 </CardGroup>
 
-### How does it works ?
+## Principles
 
 <AccordionGroup>
-  <Accordion title="Request providers in relevant sequence" icon="1">
+  <Accordion title="Request providers in relevant sequence" icon="diagram-project" iconType="regular">
     According to the information provided about the lead, BetterContact determines the optimal provider sequence to maximize the enrichment rate.
   </Accordion>
-  <Accordion title="Verify the provided contact data" icon="2">
+  <Accordion title="Verify the provided contact data" icon="check-double" iconType="regular">
     Once a provider returns contact data, we verify it through various layers and only push back valid data to you.
   </Accordion>
-  <Accordion title="Request providers until valid data is found" icon="3">
+  <Accordion title="Request providers until valid data is found" icon="loader" iconType="regular">
     If one provider’s data is invalid, BetterContact will request the following providers until valid data is found.
   </Accordion>
 </AccordionGroup>
 
 <Note>
-  **<Tooltip tip="">BetterContact also verifies catch_all email</Tooltip>**<Tooltip tip="">.</Tooltip> 
+  **BetterContact also verifies catch_all email**<Tooltip tip="">.</Tooltip>
 
   Meaning  you can now contact unreachable leads without compromising your sending domain reputation.
 </Note>
 
-
-### How it works
+## How does API work
 
 <AccordionGroup>
   <Accordion title="Submit your lead(s) to enrich" icon="upload">
@@ -66,3 +102,8 @@ description: "Find and Enrich your leads with the most powerful waterfall aggreg
     Waterfall enrichment requires a couple of seconds to request all providers and verify data. Once you have submitted your leads, you have to fetch the enriched data. Alternatively, you can provide a webhook URL in the submit call to instantly get the results without the need to fetch it. [\>See endpoint](/api-reference/endpoint/get)
   </Accordion>
 </AccordionGroup>
+
+<Note>
+  **Waterfall enrichment API is an async API.**\
+  Meaning you will have to submit your contacts to enruch then wait a few minutes to get the enriched data on your provided webhook or fecth the enriched data with the according endpoint.
+</Note>
