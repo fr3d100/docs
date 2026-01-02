@@ -1,26 +1,35 @@
 ---
-title: 'Quickstart'
-description: 'Enrich your leads with the best waterfall enrichment provider within minutes!'
+title: "Quickstart"
+description: "Enrich your leads with the best waterfall enrichment provider within minutes!"
 ---
 
 ### Purpose
 
 BetterContact API’s purpose is to serve as the only API you need for your contact data enrichment. No need to create an in-house waterfall enrichment process with several API calls to different providers.
 
-### What BetterContact does
+### What BetterContact does?
+
+<Columns cols={2}>
+  <Card title="Get new leads" icon="address-book" iconType="solid" cta="Discover waterfall Lead Finder">
+    Based on Company and People filtering, find the perfect leads matching your creiteria.
+  </Card>
+  <Card title="Get lead's contacts data" icon="sparkles" iconType="solid" cta="Discover waterfall Enrichment">
+    Get direct mobile phone numbers and work email address of your leads to reach and convert them into customers.
+  </Card>
+</Columns>
+
+### How does it works ? 
 
 <AccordionGroup>
-
-<Accordion icon="1" title="Request providers in relevant sequence">
- According to the information provided about the lead, BetterContact determines the optimal provider sequence to maximize the enrichment rate.
-</Accordion>
-<Accordion icon="2" title="Verify the provided contact data">
-  Once a provider returns contact data, we verify it through various layers and only push back valid data to you.
-</Accordion>
-<Accordion icon="3" title="Request providers until valid data is found">
-  If one provider’s data is invalid, BetterContact will request the following providers until valid data is found.
-</Accordion>
-
+  <Accordion title="Request providers in relevant sequence" icon="1">
+    According to the information provided about the lead, BetterContact determines the optimal provider sequence to maximize the enrichment rate.
+  </Accordion>
+  <Accordion title="Verify the provided contact data" icon="2">
+    Once a provider returns contact data, we verify it through various layers and only push back valid data to you.
+  </Accordion>
+  <Accordion title="Request providers until valid data is found" icon="3">
+    If one provider’s data is invalid, BetterContact will request the following providers until valid data is found.
+  </Accordion>
 </AccordionGroup>
 
 ### Enrichable data
@@ -28,19 +37,12 @@ BetterContact API’s purpose is to serve as the only API you need for your cont
 BetterContact allows you to enrich different data points of your contacts.
 
 <CardGroup>
-
-<Card title="Direct phone number" icon="phone" href="/api-reference/endpoint/create">
-  Get your lead’s verified mobile phone number.
-</Card>
-
-<Card
-  title="Verified work email"
-  icon="envelope"
-  href="/api-reference/endpoint/create"
->
-   Get your lead’s verified work email address.
-</Card>
-
+  <Card title="Direct phone number" icon="phone" href="/api-reference/endpoint/create">
+    Get your lead’s verified mobile phone number.
+  </Card>
+  <Card title="Verified work email" icon="envelope" href="/api-reference/endpoint/create">
+    Get your lead’s verified work email address.
+  </Card>
 </CardGroup>
 
 BetterContact also verifies risky and catch_all email to reduce your bounce rate and protect your domain reputation.
@@ -48,12 +50,10 @@ BetterContact also verifies risky and catch_all email to reduce your bounce rate
 ### How it works
 
 <AccordionGroup>
-  <Accordion icon="upload" title="Submit your lead(s) to enrich">
-    BetterContact’s API has a single endpoint to enrich a single lead or a batch up to 100 contacts at a time. 
-    [>See endpoint](/api-reference/endpoint/create)
+  <Accordion title="Submit your lead(s) to enrich" icon="upload">
+    BetterContact’s API has a single endpoint to enrich a single lead or a batch up to 100 contacts at a time. [\>See endpoint](/api-reference/endpoint/create)
   </Accordion>
-  <Accordion icon="download" title="Fetch results">
-    Waterfall enrichment requires a couple of seconds to request all providers and verify data. Once you have submitted your leads, you have to fetch the enriched data. Alternatively, you can provide a webhook URL in the submit call to instantly get the results without the need to fetch it.
-    [>See endpoint](/api-reference/endpoint/get)
+  <Accordion title="Fetch results" icon="download">
+    Waterfall enrichment requires a couple of seconds to request all providers and verify data. Once you have submitted your leads, you have to fetch the enriched data. Alternatively, you can provide a webhook URL in the submit call to instantly get the results without the need to fetch it. [\>See endpoint](/api-reference/endpoint/get)
   </Accordion>
 </AccordionGroup>
