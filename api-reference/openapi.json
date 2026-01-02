@@ -594,124 +594,437 @@
         }
       },
       "LeadObject": {
+      "LeadObject": {
+        "type": "object",
         "type": "object",
         "properties": {
+        "properties": {
+          "contact_id": {
           "contact_id": {
             "type": "integer",
+            "type": "integer",
+            "example": 32680300
             "example": 77039
           },
+          },
+          "contact_full_name": {
           "contact_full_name": {
             "type": "string",
+            "type": "string",
+            "example": "Frédéric Bonnand"
             "example": "Frédéric Bonnand"
           },
+          },
+          "contact_first_name": {
           "contact_first_name": {
             "type": "string",
+            "type": "string",
+            "example": "Frédéric"
             "example": "Frédéric"
           },
+          },
+          "contact_last_name": {
           "contact_last_name": {
             "type": "string",
+            "type": "string",
+            "example": "Bonnand"
             "example": "Bonnand"
           },
+          },
+          "contact_job_title": {
           "contact_job_title": {
             "type": "string",
+            "type": "string",
+            "example": "Founder @bettercontact"
             "example": "Founder @bettercontact"
           },
+          },
+          "contact_seniority": {
           "contact_seniority": {
             "type": "string",
+            "type": "string",
+            "example": "Founder"
             "example": "founder"
           },
+          },
+          "contact_headline": {
           "contact_headline": {
             "type": "string",
+            "type": "string",
+            "example": "Find emails and phones with bettercontact waterfall enrichment"
             "example": "find emails and phones with bettercontact waterfall enrichment"
           },
+          "contact_industry": {
+            "type": "string",
+            "example": "Information technology & services"
+          },
+          },
+          "contact_linkedin_profile_url": {
           "contact_linkedin_profile_url": {
             "type": "string",
+            "type": "string",
+            "example": "https://www.linkedin.com/in/fbonnand"
             "example": "https://www.linkedin.com/in/fbonnand"
           },
-          "contact_location_continent": {
-            "type": "string",
-            "example": "europe"
           },
-          "contact_location_country": {
-            "type": "string",
-            "example": "france"
-          },
-          "contact_location_state": {
+          "contact_linkedin_id": {
             "type": "string",
             "nullable": true
           },
+          "contact_location_continent": {
+          "contact_location_continent": {
+            "type": "string",
+            "type": "string",
+            "example": "Europe"
+            "example": "europe"
+          },
+          },
+          "contact_location_country": {
+          "contact_location_country": {
+            "type": "string",
+            "type": "string",
+            "example": "France"
+            "example": "france"
+          },
+          },
+          "contact_location_state": {
+          "contact_location_state": {
+            "type": "string",
+            "type": "string",
+            "nullable": true
+            "nullable": true
+          },
+          },
+          "contact_location_city": {
           "contact_location_city": {
             "type": "string",
             "nullable": true
           },
+          "contact_city": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_location": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_country_code": {
+            "type": "string",
+            "type": "string",
+            "nullable": true
+            "nullable": true
+          },
+          },
+          "contact_email_address": {
           "contact_email_address": {
             "type": "string",
+            "type": "string",
             "nullable": true
+            "nullable": true
+          },
           },
           "contact_email_address_status": {
+          "contact_email_address_status": {
+            "type": "string",
             "type": "string",
             "nullable": true
+            "nullable": true
+          },
           },
           "contact_email_address_provider": {
+          "contact_email_address_provider": {
+            "type": "string",
             "type": "string",
             "nullable": true
+            "nullable": true
+          },
           },
           "contact_phone_number": {
+          "contact_phone_number": {
+            "type": "string",
             "type": "string",
             "nullable": true
+            "nullable": true
+          },
           },
           "contact_phone_number_cc": {
+          "contact_phone_number_cc": {
+            "type": "string",
+            "type": "string",
+            "nullable": true
+            "nullable": true
+          },
+          },
+          "contact_additional_phone_number": {
+          "contact_additional_phone_number": {
+            "type": "string",
+            "type": "string",
+            "nullable": true
+            "nullable": true
+          },
+          },
+          "contact_avatar": {
             "type": "string",
             "nullable": true
           },
-          "contact_additional_phone_number": {
+          "contact_gender": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_activity": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_followers": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_connections": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_experience": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_current_company": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_people_also_viewed": {
+            "type": "string",
+            "nullable": true
+          },
+          "contact_posts": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_id": {
             "type": "string",
             "nullable": true
           },
           "company_name": {
+          "company_name": {
+            "type": "string",
             "type": "string",
             "example": "Bettercontact"
+            "example": "Bettercontact"
+          },
           },
           "company_domain": {
+          "company_domain": {
+            "type": "string",
             "type": "string",
             "example": "bettercontact.rocks"
+            "example": "bettercontact.rocks"
+          },
           },
           "company_description": {
+          "company_description": {
             "type": "string",
+            "type": "string",
+            "example": "Bettercontact aggregates 20+ premium contact data providers such as people data labs, rocketreach, and datagma into one subscription."
             "example": "bettercontact aggregates 20+ premium contact data providers..."
           },
+          "company_about": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_logo": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_image": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_size": {
+            "type": "string",
+            "nullable": true
+          },
+          },
+          "company_linkedin_url": {
           "company_linkedin_url": {
             "type": "string",
+            "type": "string",
+            "example": "https://www.linkedin.com/company/bettercontact"
             "example": "https://www.linkedin.com/company/bettercontact"
           },
+          },
+          "company_linkedin_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_website": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_crunchbase_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_directions_url": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_industry": {
           "company_industry": {
             "type": "string",
+            "type": "string",
+            "example": "Software development"
             "example": "software development"
           },
+          "company_industries": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_industry_code": {
+            "type": "string",
+            "nullable": true
+          },
+          },
+          "company_type": {
           "company_type": {
             "type": "string",
+            "type": "string",
+            "example": "privately_held"
             "example": "privately_held"
           },
+          },
+          "company_organization_type": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_founded": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_founded_year": {
           "company_founded_year": {
             "type": "integer",
+            "type": "integer",
             "example": 2022
+            "example": 2022
+          },
+          },
+          "company_funding": {
+          "company_head_quarters_city": {
+            "type": "string",
+            "type": "string",
+            "nullable": true
+            "example": "lyon"
+          },
+          },
+          "company_investors": {
+          "company_head_quarters_country": {
+            "type": "string",
+            "type": "string",
+            "nullable": true
+          },
+          "company_stock_info": {
+            "type": "string",
+            "example": "france"
+            "nullable": true
+          },
+          "company_similar": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_specialities": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_employees": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_employees_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_employees_in_linkedin": {
+            "type": "string",
+            "nullable": true
+          },
+          },
+          "company_employees_range_start": {
+          "company_employees_range_start": {
+            "type": "integer",
+            "type": "integer",
+            "example": 11
+            "example": 11
+          },
+          },
+          "company_employees_range_end": {
+          "company_employees_range_end": {
+            "type": "integer",
+            "type": "integer",
+            "example": 50
+            "example": 50
+          },
+          "company_followers": {
+            "type": "string",
+            "nullable": true
           },
           "company_head_quarters_city": {
             "type": "string",
-            "example": "lyon"
+            "example": "Lyon"
           },
           "company_head_quarters_country": {
             "type": "string",
-            "example": "france"
+            "example": "France"
           },
-          "company_employees_range_start": {
-            "type": "integer",
-            "example": 11
+          "company_headquarters": {
+            "type": "string",
+            "nullable": true
           },
-          "company_employees_range_end": {
-            "type": "integer",
-            "example": 50
+          "company_address_street": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_address_city": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_address_state": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_address_country": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_address_zipcode": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_formatted_locations": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_country_code": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_phone_number": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_legal_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "company_legal_name": {
+            "type": "string",
+            "nullable": true
+          },
+          "custom_fields": {
+            "type": "array",
+            "items": {},
+            "example": []
           }
+          }
+        }
         }
       },
       "UnauthorizedError": {
