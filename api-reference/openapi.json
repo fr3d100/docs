@@ -22,8 +22,19 @@
     "/async": {
       "post": {
         "description": "Create a new enrichment",
+        "parameters": [
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "your api key"
+          }
+        ],
         "requestBody": {
-          "description": "Array of lead(s) enrich",
+          "description": "Data to enrich",
           "required": true,
           "content": {
             "application/json": {
@@ -208,18 +219,36 @@
         ]
       }
     },
-    "/async": {
+    "/async/{request_id}": {
       "get": {
         "summary": "Get request results",
-        "description": "Retrieve the enrichment results for a specific request ID",
+        "description": "Retrieve the results for a specific request ID (works for both enrichment and lead finder requests)",
         "parameters": [
           {
             "name": "request_id",
-            "in": "query",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "X-API-Key",
+            "in": "header",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "your api key (can also be passed as query parameter)"
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "your api key (alternative to header)"
           }
         ],
         "responses": {
@@ -279,9 +308,8 @@
     "securitySchemes": {
       "apiKey": {
         "type": "apiKey",
-        "in": "header",
-        "name": "X-API-Key",
-        "description": "The API key of your BetterContact account you can get from https://app.bettercontact.rocks/api"
+        "in": "query",
+        "name": "api_key"
       }
     },
     "schemas": {
