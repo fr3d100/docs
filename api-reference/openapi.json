@@ -219,14 +219,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/EnrichmentResult"
-                    },
-                    {
-                      "$ref": "#/components/schemas/LeadFinderResult"
-                    }
-                  ]
+                  "$ref": "#/components/schemas/EnrichmentResult"
                 }
               }
             }
