@@ -209,7 +209,7 @@
         ]
       }
     },
-    "/async/{request_id}": {
+    "/async": {
       "get": {
         "summary": "Get request results",
         "description": "Retrieve the results for a specific request ID (works for both enrichment and lead finder requests)",
@@ -239,6 +239,72 @@
               "type": "string"
             },
             "description": "your api key (alternative to header)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Request results retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/EnrichmentResult"
+                    },
+                    {
+                      "$ref": "#/components/schemas/LeadFinderResult"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not authorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UnauthorizedError"
+                }
+              }
+            }
+          },
+          "406": {
+            "description": "Invalid request_id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Unvalid request_id."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/lead_finder/async": {
+      "get": {
+        "summary": "Get Lead Finder request results",
+        "description": "Retrieve the results for a specific request ID",
+        "parameters": [
+          {
+            "name": "request_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
