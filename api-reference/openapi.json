@@ -345,7 +345,7 @@
         "type": "object",
         "properties": {
           "data": {
-            "description": "Array of contacts to enrich.",
+            "description": "Array of leads to enrich. Minimum: 1 lead. Maximum: 100 leads.",
             "type": "array",
             "items": {
               "type": "object",
@@ -549,7 +549,7 @@
                 "contact_first_name": { "type": "string", "example": "Elon" },
                 "contact_last_name": { "type": "string", "example": "Musk" },
                 "contact_email_address": { "type": "string", "example": "elon@tesla.com" },
-                "contact_email_address_status": { "type": "string", "example": "deliverable" },
+                "contact_email_address_status": { "type": "string", "example": "deliverable", "description": "Available statuses: deliverable, catch_all_safe, catch_all_not_safe, undeliverable" },
                 "contact_gender": { "type": "string", "example": "male" },
                 "contact_job_title": { "type": "string", "example": "CEO of Tesla" }
               }
