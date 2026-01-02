@@ -80,17 +80,7 @@
     "/lead_finder/async": {
       "post": {
         "description": "Create a new lead finder request to find people working in specific companies",
-        "parameters": [
-          {
-            "name": "api_key",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "your api key"
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "description": "Filters and parameters for lead finding",
           "required": true,
