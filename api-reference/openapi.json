@@ -308,8 +308,8 @@
     "securitySchemes": {
       "apiKey": {
         "type": "apiKey",
-        "in": "query",
-        "name": "api_key"
+        "in": "header",
+        "name": "X-API-Key"
       }
     },
     "schemas": {
