@@ -218,7 +218,9 @@
             "description": "Request results retrieved successfully",
             "content": {
               "application/json": {
-                "schema": "$ref": "#/components/schemas/EnrichmentResult"
+                "schema": {
+                "$ref": "#/components/schemas/EnrichmentResult"
+                }
               }
             }
           },
