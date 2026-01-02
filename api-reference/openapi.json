@@ -209,14 +209,14 @@
         ]
       }
     },
-    "/async/{request_id}": {
+    "/async": {
       "get": {
         "summary": "Get request results",
         "description": "Retrieve the results for a specific request ID (works for both enrichment and lead finder requests)",
         "parameters": [
           {
             "name": "request_id",
-            "in": "path",
+            "in": "query",
             "required": true,
             "schema": {
               "type": "string"
