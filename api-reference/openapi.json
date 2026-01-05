@@ -437,7 +437,7 @@
           "lead_fullname": {
             "$ref": "#/components/schemas/FilterObject"
           },
-          "lead_linkedin_profile": {
+          "lead_linkedin_url": {
             "$ref": "#/components/schemas/FilterObject"
           },
           "lead_department": {
