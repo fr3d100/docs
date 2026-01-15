@@ -454,6 +454,9 @@
           },
           "lead_location": {
             "$ref": "#/components/schemas/FilterObject"
+          },
+          "lead_seniority": {
+            "$ref": "#/components/schemas/SeniorityFilter"
           }
         }
       },
@@ -493,6 +496,29 @@
             }
           }
         ]
+      },
+      "SeniorityFilter": {
+        "type": "object",
+        "properties": {
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["senior", "entry", "manager", "mid-level", "director", "c_suite", "owner", "intern", "founder", "head", "vp", "partner"]
+            },
+            "nullable": true,
+            "description": "Seniority levels that must match. Possible values: senior, entry, manager, mid-level, director, c_suite, owner, intern, founder, head, vp, partner"
+          },
+          "exclude": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["senior", "entry", "manager", "mid-level", "director", "c_suite", "owner", "intern", "founder", "head", "vp", "partner"]
+            },
+            "nullable": true,
+            "description": "Seniority levels that must NOT match. Possible values: senior, entry, manager, mid-level, director, c_suite, owner, intern, founder, head, vp, partner"
+          }
+        }
       },
       "EnrichmentResult": {
         "type": "object",
