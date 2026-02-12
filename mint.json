@@ -58,6 +58,10 @@
       "pages": ["api-reference/authentication"]
     },
     {
+      "group": "API Rate Limits",
+      "pages": ["api-reference/api_rate_limits"]
+    },
+    {
       "group": "My account",
       "pages": [
         "api-reference/endpoint/account"
