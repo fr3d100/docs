@@ -369,7 +369,11 @@
                   }
                 }
               },
-              "required": ["first_name", "last_name", "company"]
+              "required": [
+                "first_name",
+                "last_name",
+                "company"
+              ]
             }
           },
           "enrich_email_address": {
@@ -389,7 +393,11 @@
             "type": "string"
           }
         },
-        "required": ["data", "enrich_email_address", "enrich_phone_number"]
+        "required": [
+          "data",
+          "enrich_email_address",
+          "enrich_phone_number"
+        ]
       },
       "LeadFinderRequest": {
         "type": "object",
@@ -397,10 +405,17 @@
           "filters": {
             "$ref": "#/components/schemas/LeadFinderFilters"
           },
-          "max_leads": {
+          "limit": {
             "type": "integer",
-            "description": "Maximum number of leads to return",
+            "minimum": 1,
+            "maximum": 200,
+            "description": "Maximum number of results to return per request. Accepted values between 1 and 200.",
             "example": 100
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Number of results to skip before returning matches. Use this to paginate through results when the total number of leads found (visible in the `leads_found` attribute of the response) exceeds the `limit` of the current request. For example, if `leads_found` is 350 and `limit` is 100, set `offset` to 101 to retrieve the next page of results.",
+            "example": 101
           },
           "webhook": {
             "type": "string",
@@ -408,7 +423,9 @@
             "description": "Optional URL to receive results automatically"
           }
         },
-        "required": ["filters"]
+        "required": [
+          "filters"
+        ]
       },
       "LeadFinderFilters": {
         "type": "object",
@@ -504,7 +521,20 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["senior", "entry", "manager", "mid-level", "director", "c_suite", "owner", "intern", "founder", "head", "vp", "partner"]
+              "enum": [
+                "senior",
+                "entry",
+                "manager",
+                "mid-level",
+                "director",
+                "c_suite",
+                "owner",
+                "intern",
+                "founder",
+                "head",
+                "vp",
+                "partner"
+              ]
             },
             "nullable": true,
             "description": "Seniority levels that must match. Possible values: senior, entry, manager, mid-level, director, c_suite, owner, intern, founder, head, vp, partner"
@@ -513,7 +543,20 @@
             "type": "array",
             "items": {
               "type": "string",
-              "enum": ["senior", "entry", "manager", "mid-level", "director", "c_suite", "owner", "intern", "founder", "head", "vp", "partner"]
+              "enum": [
+                "senior",
+                "entry",
+                "manager",
+                "mid-level",
+                "director",
+                "c_suite",
+                "owner",
+                "intern",
+                "founder",
+                "head",
+                "vp",
+                "partner"
+              ]
             },
             "nullable": true,
             "description": "Seniority levels that must NOT match. Possible values: senior, entry, manager, mid-level, director, c_suite, owner, intern, founder, head, vp, partner"
@@ -1366,13 +1409,34 @@
           "summary": {
             "type": "object",
             "properties": {
-              "total": { "type": "integer", "example": 1 },
-              "valid": { "type": "integer", "example": 1 },
-              "catch_all": { "type": "integer", "example": 0 },
-              "catch_all_safe": { "type": "integer", "example": 0 },
-              "catch_all_not_safe": { "type": "integer", "example": 0 },
-              "undeliverable": { "type": "integer", "example": 0 },
-              "not_found": { "type": "integer", "example": 0 }
+              "total": {
+                "type": "integer",
+                "example": 1
+              },
+              "valid": {
+                "type": "integer",
+                "example": 1
+              },
+              "catch_all": {
+                "type": "integer",
+                "example": 0
+              },
+              "catch_all_safe": {
+                "type": "integer",
+                "example": 0
+              },
+              "catch_all_not_safe": {
+                "type": "integer",
+                "example": 0
+              },
+              "undeliverable": {
+                "type": "integer",
+                "example": 0
+              },
+              "not_found": {
+                "type": "integer",
+                "example": 0
+              }
             }
           },
           "data": {
@@ -1380,14 +1444,39 @@
             "items": {
               "type": "object",
               "properties": {
-                "enriched": { "type": "boolean", "example": true },
-                "email_provider": { "type": "string", "example": "XXX" },
-                "contact_first_name": { "type": "string", "example": "Elon" },
-                "contact_last_name": { "type": "string", "example": "Musk" },
-                "contact_email_address": { "type": "string", "example": "elon@tesla.com" },
-                "contact_email_address_status": { "type": "string", "example": "deliverable", "description": "Available statuses: deliverable, catch_all_safe, catch_all_not_safe, undeliverable" },
-                "contact_gender": { "type": "string", "example": "male" },
-                "contact_job_title": { "type": "string", "example": "CEO of Tesla" }
+                "enriched": {
+                  "type": "boolean",
+                  "example": true
+                },
+                "email_provider": {
+                  "type": "string",
+                  "example": "XXX"
+                },
+                "contact_first_name": {
+                  "type": "string",
+                  "example": "Elon"
+                },
+                "contact_last_name": {
+                  "type": "string",
+                  "example": "Musk"
+                },
+                "contact_email_address": {
+                  "type": "string",
+                  "example": "elon@tesla.com"
+                },
+                "contact_email_address_status": {
+                  "type": "string",
+                  "example": "deliverable",
+                  "description": "Available statuses: deliverable, catch_all_safe, catch_all_not_safe, undeliverable"
+                },
+                "contact_gender": {
+                  "type": "string",
+                  "example": "male"
+                },
+                "contact_job_title": {
+                  "type": "string",
+                  "example": "CEO of Tesla"
+                }
               }
             }
           }
