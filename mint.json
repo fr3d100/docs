@@ -70,7 +70,8 @@
       "group": "Lead Finder - Get new leads",
       "pages": [
         "api-reference/endpoint/lead_finder_post",
-        "api-reference/endpoint/lead_finder_get"
+        "api-reference/endpoint/lead_finder_get",
+        "api-reference/taxonomies"
       ]
     },
     {
